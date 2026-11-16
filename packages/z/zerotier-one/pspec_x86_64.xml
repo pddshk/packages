@@ -1,0 +1,54 @@
+<PISI>
+    <Source>
+        <Name>zerotier-one</Name>
+        <Homepage>https://www.zerotier.com</Homepage>
+        <Packager>
+            <Name>Pavel Dydyshka</Name>
+            <Email>paul.dydyshko@gmail.com</Email>
+        </Packager>
+        <License>MPL-2.0</License>
+        <PartOf>network.clients</PartOf>
+        <Summary xml:lang="en">Smart Ethernet switch for Earth</Summary>
+        <Description xml:lang="en">ZeroTier One creates secure, peer-to-peer virtual networks that behave like a single
+Ethernet switch, connecting devices anywhere over the internet. This package builds
+only the MPL-2.0 licensed client; the source-available network controller is not included.
+
+To run ZeroTier as a system service, enable it with: sudo systemctl enable --now zerotier-one
+Alternatively, run the daemon manually with: sudo zerotier-one -d
+</Description>
+        <Archive type="binary" sha1sum="79eb0752a961b8e0d15c77d298c97498fbc89c5a">https://sources.getsol.us/README.Solus</Archive>
+    </Source>
+    <Package>
+        <Name>zerotier-one</Name>
+        <Summary xml:lang="en">Smart Ethernet switch for Earth</Summary>
+        <Description xml:lang="en">ZeroTier One creates secure, peer-to-peer virtual networks that behave like a single
+Ethernet switch, connecting devices anywhere over the internet. This package builds
+only the MPL-2.0 licensed client; the source-available network controller is not included.
+
+To run ZeroTier as a system service, enable it with: sudo systemctl enable --now zerotier-one
+Alternatively, run the daemon manually with: sudo zerotier-one -d
+</Description>
+        <PartOf>network.clients</PartOf>
+        <Files>
+            <Path fileType="executable">/usr/bin/zerotier-cli</Path>
+            <Path fileType="executable">/usr/bin/zerotier-idtool</Path>
+            <Path fileType="executable">/usr/bin/zerotier-one</Path>
+            <Path fileType="library">/usr/lib64/systemd/system/zerotier-one.service</Path>
+            <Path fileType="data">/usr/share/bash-completion/completions/zerotier-cli</Path>
+            <Path fileType="data">/usr/share/licenses/zerotier-one/LICENSE-MPL.txt</Path>
+            <Path fileType="data">/usr/share/licenses/zerotier-one/LICENSE.txt</Path>
+            <Path fileType="man">/usr/share/man/man1/zerotier-cli.1.zst</Path>
+            <Path fileType="man">/usr/share/man/man1/zerotier-idtool.1.zst</Path>
+            <Path fileType="man">/usr/share/man/man8/zerotier-one.8.zst</Path>
+        </Files>
+    </Package>
+    <History>
+        <Update release="1">
+            <Date>2026-11-16</Date>
+            <Version>1.16.2</Version>
+            <Comment>Packaging update</Comment>
+            <Name>Pavel Dydyshka</Name>
+            <Email>paul.dydyshko@gmail.com</Email>
+        </Update>
+    </History>
+</PISI>

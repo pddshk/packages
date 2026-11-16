@@ -1,0 +1,41 @@
+# yaml-language-server: $schema=/usr/share/ypkg/schema/schema.json
+name       : zerotier-one
+version    : 1.16.2
+release    : 1
+source     :
+    - https://github.com/zerotier/ZeroTierOne/archive/refs/tags/1.16.2.tar.gz : 2c607f573c6e38815433af289d364a689a203b18b51125f06c4472014d0657f0
+homepage   : https://www.zerotier.com
+license    : MPL-2.0
+component  : network.clients
+summary    : Smart Ethernet switch for Earth
+description: |
+    ZeroTier One creates secure, peer-to-peer virtual networks that behave like a single
+    Ethernet switch, connecting devices anywhere over the internet. This package builds
+    only the MPL-2.0 licensed client; the source-available network controller is not included.
+
+    To run ZeroTier as a system service, enable it with: sudo systemctl enable --now zerotier-one
+    Alternatively, run the daemon manually with: sudo zerotier-one -d
+networking : true
+builddeps  :
+    - pkgconfig(openssl)
+    - rust
+setup      : |
+    pushd rustybits
+    %cargo_fetch
+    popd
+build      : |
+    %make one ZT_NONFREE=0
+install    : |
+    install -Dm00755 zerotier-one $installdir/usr/bin/zerotier-one
+    ln -s zerotier-one $installdir/usr/bin/zerotier-cli
+    ln -s zerotier-one $installdir/usr/bin/zerotier-idtool
+
+    install -Dm00644 doc/zerotier-one.8 $installdir/usr/share/man/man8/zerotier-one.8
+    install -Dm00644 doc/zerotier-cli.1 $installdir/usr/share/man/man1/zerotier-cli.1
+    install -Dm00644 doc/zerotier-idtool.1 $installdir/usr/share/man/man1/zerotier-idtool.1
+    install -Dm00644 zerotier-cli-completion.bash $installdir/usr/share/bash-completion/completions/zerotier-cli
+
+    install -Dm00644 debian/zerotier-one.service $installdir/%libdir%/systemd/system/zerotier-one.service
+    sed -i 's|/usr/sbin/zerotier-one|/usr/bin/zerotier-one|' $installdir/%libdir%/systemd/system/zerotier-one.service
+
+    %install_license LICENSE.txt LICENSE-MPL.txt

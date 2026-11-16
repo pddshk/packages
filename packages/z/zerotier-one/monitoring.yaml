@@ -1,0 +1,7 @@
+releases:
+  id: 17578
+  rss: https://github.com/zerotier/ZeroTierOne/releases.atom
+security:
+  cpe:
+  - vendor: zerotier
+    product: zerotierone
